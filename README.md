@@ -4,14 +4,9 @@ EasyAndroidResources
 
 ## Android resources
 
-**Framework:**
-- [Binder - 0](http://blog.csdn.net/linmiansheng/article/details/37918333)
-- [Binder - 1](http://blog.csdn.net/linmiansheng/article/details/41518627)
-- [Binder - 2](http://blog.csdn.net/linmiansheng/article/details/42438813)
 
 **Other:**
 - [LruCache源码解析](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/LruCache%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md)   
-- [http与https的区别](http://www.cnblogs.com/wxlzhizu/archive/2009/12/09/1620005.html)
 
 
 ## Java resources
