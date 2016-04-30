@@ -1,6 +1,8 @@
 EasyAndroidResources
 ==
 
+Easy to learn Android resource
+
 
 ## Android resources
 
