@@ -21,5 +21,5 @@ EasyAndroidResources
 
 **Android:**
 - [LruCache](https://github.com/CaMnter/EasyAndroidResources/blob/master/code/android/classes/LruCache.java)
-- [Otto](https://github.com/CaMnter/EasyAndroidResources/tree/master/code/android/framework/Otto)
+- [Otto](https://github.com/CaMnter/EasyAndroidResources/tree/master/code/android/framework/otto)
 
