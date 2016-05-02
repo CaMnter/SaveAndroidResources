@@ -80,7 +80,8 @@ Server, Client 和 ServiceManager 是运行在用户空间中的不同的进程�
 - **1.** Binder Client 通过 transact 方法， Client 线程进入到Binder 驱动中。
 - **2.**将**想要服务 + 句柄=0**，封装成数据包，打开 **dev/binder** 设备文件，发给 Binder 驱动。
 - **3.** Binder 驱动接收到句柄0，找到 ServiceManager。
-- **4.** ServiceManager 将想要服务的句柄返回。
+- **4.**ServiceManager 根据 **服务名称->句柄的mapping**找到服务句柄。
+- **5.** ServiceManager 将想要服务的句柄返回。
 
 **然后调用 Binder 驱动 中对应 Binder Server 的 mRemote 对象去访问 Binder Server，Binder Server 向 Binder驱动 发送一个notify消息，从而 Client 线程从 Binder 驱动代码区返回到 Server 代码区。**
 
