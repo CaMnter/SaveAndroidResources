@@ -11,8 +11,7 @@ Binder AIDL
 ## 2. 建立 AIDL 服务的步骤
 
 - **1.** Java包目录中建立一个扩展名为 .aidl 的文件。该文件的语法类似于 Java 代码，但会稍有不同。  
- 
-- **2.** 如果 aidl 文件的内容是正确的，ADT 会自动生成一个Java接口文件（*.java）。  
+- **2.** 如果 aidl 文件的内容是正确的，ADT 会自动生成一个Java接口文件（*.java）。
 - **3.** 建立一个服务类（Service的子类）。  
 - **4.** 实现由 aidl 文件生成的 Java 接口。
 - **5.** 在 AndroidManifest.xml 文件中配置 AIDL 服务，尤其要注意的是，`<action>` 标签中android:name的属性值就是客户端要引用该服务的ID，也就是Intent类的参数值。
@@ -26,7 +25,7 @@ Binder AIDL
 
 ## 3. AIDL 实例
 
-定义一个 .aidl 文件：
+### 3.1 定义一个 .aidl 文件
 
 ```java
 // IPushMessage.aidl
@@ -47,7 +46,7 @@ interface IPushMessage {
 }
 ```
 
-生成对应的 .java 文件
+### 3.2 生成对应的 .java 文件
 
 ```java
 /*
@@ -227,7 +226,6 @@ Proxy 类定义了 两个 code 去区分接口方法：`TRANSACTION_basicTypes` 
 同时，Stub 类的 `onTransact` 方法里也有对应 `TRANSACTION_basicTypes` 和 `TRANSACTION_onMessage` code的分发处理。  
           
 ### 4.4 Stub.onTransact 的作用？
-**答：**    
 > onTransact 方法主要是在 用户空间 和 内核空间 中进行数据的交换，实现进程间数据的交互。
 
 ### 4.5 asInterface 方法将 IBinder 对象转换成对应接口
