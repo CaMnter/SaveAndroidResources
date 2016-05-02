@@ -20,7 +20,7 @@ Binder AIDL
 
 ## AIDL 原理
 
-**为了 .aidl 文件生成的 java 代码能够进行 IPC （跨进程通信） 呢？**   
+**为什么 .aidl 文件生成的 java 代码能够进行 IPC （跨进程通信） 呢？**   
 **答：**因为 生成的 java 代码**定义了 Binder 机制中 作为 Server 的 Binder 对象和 Client 中要使用的 Proxy 对象**。 Binder Server 创建后会启动一个隐藏线程，同时会创建 Binder 驱动中的 Binder Server的 远程 mRemote 对象。**mRemote 其实就是一个Proxy 对象** 。Client 通过 这个 Proxy 对象去和 Server 通信。
 
 
