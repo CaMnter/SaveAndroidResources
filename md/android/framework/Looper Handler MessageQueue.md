@@ -49,8 +49,7 @@ Looper Handler MessageQueue
 - **类内部的变量：** 其作用域是该类所产生的对象，只要对象没有销毁，则对象内部的变量值
 一直保持。
 
-- **类内部静态变量：** 其作用域是整个过程，只要在该进程中，则该变量的值就一直保持，无
-论使用该类构造过多少个对象，该变量只有一个赋值，并一直保持。进程中哪个线程引用该变量，其值总是相同的，因为在编译器内部为静态变量分配了单独的内存空间。
+- **类内部静态变量：** 其作用域是整个过程，只要在该进程中，则该变量的值就一直保持，无论使用该类构造过多少个对象，该变量只有一个赋值，并一直保持。进程中哪个线程引用该变量，其值总是相同的，因为在编译器内部为静态变量分配了单独的内存空间。
 
 **线程局部存储：**
 > 同一个线程引用变量值相同，不同线程引用则变量值不相同。
@@ -85,7 +84,7 @@ private static void prepare(boolean quitAllowed) {
 }
 ```
 
-创建一个 Looper 并将，Looper 存储在 ThreadLocal 内。所以，**相同线程 访问的 Looper 是一样的，不同线程访问的 Looper 是不一样的。**
+创建一个 Looper 并将，Looper 存储在 ThreadLocal 内。所以，**相同线程访问的 Looper 是一样的，不同线程访问的 Looper 是不一样的。**
 
 ### 4.2 Looper 构造方法
 
@@ -149,6 +148,9 @@ public static void loop() {
         msg.recycleUnchecked();
     }
 }
+...
+...
+...
 public static @Nullable Looper myLooper() {
     return sThreadLocal.get();
 }
@@ -165,3 +167,196 @@ public static @Nullable Looper myLooper() {
 - **4.** 通过 `msg.target.dispatchMessage(msg)` 不难发现 `msg.target` 是一个Handler，执行了该 `msg` 的处理。
 
 - **5.** 最后，`msg.recycleUnchecked();` 对消息的资源进行回收。对象占用的系统资源。因为 `Message` 类内部使用了一个数据池去保存 `Message` 对象，从而避免不停地创建和删除  `Message` 类对象。因此，每次处理完该消息后，需要将该 `Message` 对象表明为空闲，以便 `Message` 对象可以被重用。
+
+## 5. MessageQueue
+
+> 消息队列采用排队方式对消息进行处理，就是先到的消息会先得到处理，但是如果消息本身指定
+了被处理的时刻，则必须等到该时刻才能处理消息。消息在 MessageQueue 中使用 Message 类表
+示，队列中的消息以链表的结构进行存储，Message 对象内部包含一个 next 变量，该变量指向下一
+个消息。
+
+**MessageQueue 的主要方法：**
+
+- **取出消息：** `next()` 。
+
+- **添加消息：** `enqueueMessage(Message msg, long when)` 。
+
+
+### 5.1 next()
+```java
+Message next() {
+    // Return here if the message loop has already quit and been disposed.
+    // This can happen if the application tries to restart a looper after quit
+    // which is not supported.
+    final long ptr = mPtr;
+    if (ptr == 0) {
+        return null;
+    }
+
+    int pendingIdleHandlerCount = -1; // -1 only during first iteration
+    int nextPollTimeoutMillis = 0;
+    for (;;) {
+        if (nextPollTimeoutMillis != 0) {
+            Binder.flushPendingCommands();
+        }
+
+        nativePollOnce(ptr, nextPollTimeoutMillis);
+
+        synchronized (this) {
+            // Try to retrieve the next message.  Return if found.
+            final long now = SystemClock.uptimeMillis();
+            Message prevMsg = null;
+            Message msg = mMessages;
+            if (msg != null && msg.target == null) {
+                // Stalled by a barrier.  Find the next asynchronous message in the queue.
+                do {
+                    prevMsg = msg;
+                    msg = msg.next;
+                } while (msg != null && !msg.isAsynchronous());
+            }
+            if (msg != null) {
+                if (now < msg.when) {
+                    // Next message is not ready.  Set a timeout to wake up when it is ready.
+                    nextPollTimeoutMillis = (int) Math.min(msg.when - now, Integer.MAX_VALUE);
+                } else {
+                    // Got a message.
+                    mBlocked = false;
+                    if (prevMsg != null) {
+                        prevMsg.next = msg.next;
+                    } else {
+                        mMessages = msg.next;
+                    }
+                    msg.next = null;
+                    if (DEBUG) Log.v(TAG, "Returning message: " + msg);
+                    msg.markInUse();
+                    return msg;
+                }
+            } else {
+                // No more messages.
+                nextPollTimeoutMillis = -1;
+            }
+
+            // Process the quit message now that all pending messages have been handled.
+            if (mQuitting) {
+                dispose();
+                return null;
+            }
+
+            // If first time idle, then get the number of idlers to run.
+            // Idle handles only run if the queue is empty or if the first message
+            // in the queue (possibly a barrier) is due to be handled in the future.
+            if (pendingIdleHandlerCount < 0
+                    && (mMessages == null || now < mMessages.when)) {
+                pendingIdleHandlerCount = mIdleHandlers.size();
+            }
+            if (pendingIdleHandlerCount <= 0) {
+                // No idle handlers to run.  Loop and wait some more.
+                mBlocked = true;
+                continue;
+            }
+
+            if (mPendingIdleHandlers == null) {
+                mPendingIdleHandlers = new IdleHandler[Math.max(pendingIdleHandlerCount, 4)];
+            }
+            mPendingIdleHandlers = mIdleHandlers.toArray(mPendingIdleHandlers);
+        }
+
+        // Run the idle handlers.
+        // We only ever reach this code block during the first iteration.
+        for (int i = 0; i < pendingIdleHandlerCount; i++) {
+            final IdleHandler idler = mPendingIdleHandlers[i];
+            mPendingIdleHandlers[i] = null; // release the reference to the handler
+
+            boolean keep = false;
+            try {
+                keep = idler.queueIdle();
+            } catch (Throwable t) {
+                Log.wtf(TAG, "IdleHandler threw exception", t);
+            }
+
+            if (!keep) {
+                synchronized (this) {
+                    mIdleHandlers.remove(idler);
+                }
+            }
+        }
+
+        // Reset the idle handler count to 0 so we do not run them again.
+        pendingIdleHandlerCount = 0;
+
+        // While calling an idle handler, a new message could have been delivered
+        // so go back and look again for a pending message without waiting.
+        nextPollTimeoutMillis = 0;
+    }
+}
+```
+
+ - **1.** `nativePollOnce(ptr, nextPollTimeoutMillis)`, 这是一个 **JNI** 函数，其作用是从消息队列中取出一个消息。`MessageQueue` 类内部**本身并没有保存消息队列，真正的消息队列数据保存在 JNI 中的 C 代码中**，**在 C 环境中创建了一个 NativeMessageQueue 数据对象**，这就是 `nativePollOnce()` 第一个参数的意义。它是一个 `int` 型变量，在C 环境中，该变量将被强制转换为一个 `NativeMessageQueue` 对象。在 C 环境中，如果消息队列中没有消息，将导致当前线程被挂起（ wait ) ;如果消息队列中有消息，则 C 代码中将把该消息赋值给 Java 环境中的 mMessages 变量。
+
+- **2.** 在 `synchronized(this)` 块中，判断消息所指定的执行时间是否到了。如果到了，就返回该消息，并将 `mMessages` 变量置空；如果时间还没有到，则继续等待时间到了。
+
+- **3.** 如果 `mMessages` 为空，则说明 C 环境中的消息队列没有可执行的消息了， 因此，执行 `mPendingldleHandlers` 列表中的 **"空闲回调函数"**。可以向 `MessageQueue` 中注册一些 **"空闲回调函数"**，从而当线程中没有消息可处理时去执行这些 **"空闲代码"**。
+
+
+### 5.1 enqueueMessage(Message msg, long when)
+
+```java
+boolean enqueueMessage(Message msg, long when) {
+    if (msg.target == null) {
+        throw new IllegalArgumentException("Message must have a target.");
+    }
+    if (msg.isInUse()) {
+        throw new IllegalStateException(msg + " This message is already in use.");
+    }
+
+    synchronized (this) {
+        if (mQuitting) {
+            IllegalStateException e = new IllegalStateException(
+                    msg.target + " sending message to a Handler on a dead thread");
+            Log.w(TAG, e.getMessage(), e);
+            msg.recycle();
+            return false;
+        }
+
+        msg.markInUse();
+        msg.when = when;
+        Message p = mMessages;
+        boolean needWake;
+        if (p == null || when == 0 || when < p.when) {
+            // New head, wake up the event queue if blocked.
+            msg.next = p;
+            mMessages = msg;
+            needWake = mBlocked;
+        } else {
+            // Inserted within the middle of the queue.  Usually we don't have to wake
+            // up the event queue unless there is a barrier at the head of the queue
+            // and the message is the earliest asynchronous message in the queue.
+            needWake = mBlocked && p.target == null && msg.isAsynchronous();
+            Message prev;
+            for (;;) {
+                prev = p;
+                p = p.next;
+                if (p == null || when < p.when) {
+                    break;
+                }
+                if (needWake && p.isAsynchronous()) {
+                    needWake = false;
+                }
+            }
+            msg.next = p; // invariant: p == prev.next
+            prev.next = msg;
+        }
+
+        // We can assume mPtr != 0 because mQuitting is false.
+        if (needWake) {
+            nativeWake(mPtr);
+        }
+    }
+    return true;
+}
+```
+
+- **1.** 通过 `mMessages = msg` 将参数 `msg` 赋值给 `mMessages`。
+
+- **2.** 调用 `nativeWake(mPtr)`。JNI 函数，其内部会将 `mMessages` 消息添加到 C 环境中
+的消息队列中，并且如果消息线程正处于挂起(wait)状态，则唤醒该线程。
