@@ -359,4 +359,146 @@ boolean enqueueMessage(Message msg, long when) {
 - **1.** 通过 `mMessages = msg` 将参数 `msg` 赋值给 `mMessages`。
 
 - **2.** 调用 `nativeWake(mPtr)`。JNI 函数，其内部会将 `mMessages` 消息添加到 C 环境中
-的消息队列中，并且如果消息线程正处于挂起(wait)状态，则唤醒该线程。
+的消息队列中，并且如果消息线程正处于挂起(wait)状态，则唤醒该线程。   
+
+
+## 5. Handler
+
+在 `Looper` 的 `loop()`` 的无限循环读取消息过程中，MessageQueue 虽然提供了读写消息的方法，但是却没有直接去调用，而是通过 msg.target（Hadnler）去处理消息。
+
+> 一般使用 Handler 类 MessageQueue 中发送消息，并重载 Handler 类的 handleMessage() 方法添加消息处理代码。
+
+
+### 5.1 Handler 构造方法
+
+**Handler 对象只能添加到有 MessageQueue 的线程中，否则会发生异常。**
+
+**虽然 Handler 的构造方法很多，但是都是基于这两个构造方法去实现的。**
+```java
+
+...
+
+public Handler(Callback callback, boolean async) {
+    if (FIND_POTENTIAL_LEAKS) {
+        final Class<? extends Handler> klass = getClass();
+        if ((klass.isAnonymousClass() || klass.isMemberClass() || klass.isLocalClass()) &&
+                (klass.getModifiers() & Modifier.STATIC) == 0) {
+            Log.w(TAG, "The following Handler class should be static or leaks might occur: " +
+                    klass.getCanonicalName());
+        }
+    }
+
+    mLooper = Looper.myLooper();
+    if (mLooper == null) {
+        throw new RuntimeException(
+                "Can't create handler inside thread that has not called Looper.prepare()");
+    }
+    mQueue = mLooper.mQueue;
+    mCallback = callback;
+    mAsynchronous = async;
+}
+
+...
+
+public Handler(Looper looper, Callback callback, boolean async) {
+    mLooper = looper;
+    mQueue = looper.mQueue;
+    mCallback = callback;
+    mAsynchronous = async;
+}
+```
+
+- **1.** 第一个构造方法，没有在构造参数里指定 `Looper`。所以，通过 `Looper.myLooper()` 去拿**当前线程里存储在 ThreadLocal 内的 Looper**。（ Ps：我们知道主线程创建时会默认初始化好一个 `Looper`，并且调用其 `prepare()` `loop()`。这样，参照上面讲的 `Looper` 源码，已经初始化好一个 Looper 存放在主线程的静态 ThreadLocal 内以及一个 `MessageQueue`。）这里如果是子线程，没有手动 `Looper.prepare()` 和 `Looper.loop()` 会抛出异常，因为这里肯定拿不到 `MessageQueue` (一个 Looper 对应一个 MessageQueue) 。
+
+- **2.** 构造参数指定了 Looper，就必然有 `MessageQueue`。
+
+总结这里：**其实 Handler 强制性要拿一个 Looper，也只是为了一个 MessageQueue**。一个 Looper 的初始化，伴随着一个 MessageQueue 的诞生 ( Ps:见上述 Looper 源码分析 )。因为，`Handler` 的主要工作，还是操作 `MessageQueue` 。
+
+### 5.3 Handler 发消息
+
+**虽然 Handler 的 发消息的方法很多，但是都是基于这两个 核心发消息方法 去实现的。**
+```java
+
+...
+
+public boolean sendMessageAtTime(Message msg, long uptimeMillis) {
+    MessageQueue queue = mQueue;
+    if (queue == null) {
+        RuntimeException e = new RuntimeException(
+                this + " sendMessageAtTime() called with no mQueue");
+        Log.w("Looper", e.getMessage(), e);
+        return false;
+    }
+    return enqueueMessage(queue, msg, uptimeMillis);
+}
+
+...
+
+public final boolean sendMessageAtFrontOfQueue(Message msg) {
+    MessageQueue queue = mQueue;
+    if (queue == null) {
+        RuntimeException e = new RuntimeException(
+                this + " sendMessageAtTime() called with no mQueue");
+        Log.w("Looper", e.getMessage(), e);
+        return false;
+    }
+    return enqueueMessage(queue, msg, 0);
+}
+```
+
+可以看源码得知，所有的发消息方法都最终会调用这两个方法之一，这两个方法都会调用 `MessageQueue` 的方法去写一个消息进入消息队列内，最终的消息还是被添加到 C 环境中去。
+
+
+### 5.4 Handler 处理消息
+
+```java
+
+...
+
+public void dispatchMessage(Message msg) {
+    // 1. 让 Handler.post(Runnable r) 处理消息。
+    if (msg.callback != null) {
+        handleCallback(msg);
+    } else {
+        if (mCallback != null) {
+            // 2. 初始化 Handler 的时候，指定的 Callback 处理消息。
+            if (mCallback.handleMessage(msg)) {
+                return;
+            }
+        }
+        // 3. 让重写的 handleMessage(Message msg) 去处理消息。
+        handleMessage(msg);
+    }
+}
+
+...
+
+private static void handleCallback(Message message) {
+    message.callback.run();
+}
+
+...
+
+public final boolean post(Runnable r) {
+    return sendMessageDelayed(getPostMessage(r), 0);
+}
+
+...
+
+private static Message getPostMessage(Runnable r) {
+    Message m = Message.obtain();
+    m.callback = r;
+    return m;
+}
+```
+
+其实在 `Looper.loop()` 源码里，已经看到过 `msg.target.dispatchMessage(msg)`，拿到 `Hander` （ `msg.target` ）去处理了消息。
+
+
+**dispatchMessage 内的三种处理方式：**
+
+- **1.** `handleCallback(msg)` ：是在 `post(Runnable r)` 和 `getPostMessage(Runnable r)` 之后，`getPostMessage(Runnable r)` 方法会 `m.callback = r` 将 `Runnable` 赋值给 `Message` 的 callback 属性。 再结合 `handleCallback(msg)` 的源码，会直接调用`Message` 的 callback 属性 （ Runnable ） 。
+
+- **2.** `mCallback.handleMessage(msg)` ：这里的 `mCallback` ,就是 实例化 Handler 的时候需要传入的 `callback`。这也是 Handler 的一种使用方法之一 ( Ps: 在实例化的时候，传入构造参数 Handler.Callback 去处理消息。)。
+
+- **3.** `handleMessage(msg)` ：让重写的 handleMessage(Message msg) 去处理消息。
