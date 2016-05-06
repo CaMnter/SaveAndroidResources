@@ -6,6 +6,7 @@ EasyAndroidResources
 
 **Framework:**
 - [Android 系统特点](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/framework/Android%20%E7%B3%BB%E7%BB%9F%E7%89%B9%E7%82%B9.md)
+- [Android 代码编译和APK安装过程](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/framework/Android%20%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91%E5%92%8CAPK%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B.md)
 - [Looper Handler MessageQueue](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/framework/Looper%20Handler%20MessageQueue.md)
 - [Binder](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/framework/Binder.md)
 - [Binder AIDL](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/framework/Binder%20AIDL.md)
