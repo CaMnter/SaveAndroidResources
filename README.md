@@ -5,6 +5,7 @@ EasyAndroidResources
 ## Android resources
 
 **Framework:**
+- [Looper Handler MessageQueue](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/framework/Looper%20Handler%20MessageQueue.md)
 - [Binder](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/framework/Binder.md)
 - [Binder AIDL](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/framework/Binder%20AIDL.md)
 
@@ -29,4 +30,3 @@ EasyAndroidResources
 **Android:**
 - [LruCache](https://github.com/CaMnter/EasyAndroidResources/blob/master/code/android/classes/LruCache.java)
 - [Otto](https://github.com/CaMnter/EasyAndroidResources/tree/master/code/android/framework/otto)
-
