@@ -38,7 +38,7 @@ Android Framework 概述
 
 **客户端一些重要的类：**
 
-- **ActivityThread 类：** 应用程序的主线程类，**所有的 APK 程序都有且仅有一个 ActivityThread 类，程序的入口就是 ActivityThread 类中的 static main()函数**。
+- **ActivityThread 类：** 应用程序的主线程类，**所有的 APK 程序都有且仅有一个 ActivityThread 类，程序的入口就是 ActivityThread 类中的 static main() 函数**。
 
 - **Activity 类：** APK 程序的 **最小运行单元**。一个 APK 程序中可以包含多个 Activity 对象，ActivityThread 主类会根据用户操作选择运行哪个 Activity 对象。
 
@@ -61,4 +61,4 @@ Linux 驱动 和 Framework 相关的主要包含两个部分。分别是 **Surfa
 
 **SurfaceFlingger 驱动作用：** 把各个 Surface 显示同一个屏幕上。
 
-**Binder驱动作用：** 提供跨进程的消息传递。
+**Binder 驱动作用：** 提供跨进程的消息传递。
