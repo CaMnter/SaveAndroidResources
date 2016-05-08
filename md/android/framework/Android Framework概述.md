@@ -55,7 +55,7 @@ Android Framework 概述
 - **WindowManager 类：** 客户端要申请创建一个窗口，而具体创建窗口的任务是由 WMS 完成的 WindowManager 类就像是一个部门经理，谁有什么需求就告诉它，由它和 WMS 进行交互，客户端不能直接和 WMS 交互。
 
 
-<img src="http://ww3.sinaimg.cn/large/006lPEc9jw1f3o34obub8j312o19cwhe.jpg" width="660x"/>
+<img src="http://ww1.sinaimg.cn/large/006lPEc9jw1f3o3ce05t9j312g18vdil.jpg" width="660x"/>
 
 
 ## 4. Linux 驱动
