@@ -9,7 +9,6 @@ Android APK的运行过程
 
 **3.** 接着 **UI** 主线程调用 `Looper.loop()` 方法进入消息循环体，进入后就会不断从消息队列（ **MessageQueue** ）中读取并处理消息。
 
-<img src="http://ww2.sinaimg.cn/large/006lPEc9gw1f3p5hm294kj31kw16owjm.jpg" width="760x"/>
 
 ```java
 public final class ActivityThread {
@@ -61,6 +60,8 @@ public final class ActivityThread {
 
 }  
 ```
+
+<img src="http://ww2.sinaimg.cn/large/006lPEc9gw1f3p5hm294kj31kw16owjm.jpg" width="760x"/>
 
 
 **4.** 当 **ActivityThread** 接收到 **AMS** 发送 **start 某个 Activity 的请求** 后，就会创建指定的 **Activity** 对象。**Activity** 又会创建 **PhoneWindow 类 -> DecorView 类 -> 创建相应的 View 或者 ViewGroup**。创建完成后，**Activity** 需要把创建好的界面显示到屏幕上，于是调用 **WindowManager** 类，**WindowManager** 创建一个 **ViewRoot** 对象，实际上创建了 **ViewRoot** 类和 **W** 类，创建 **ViewRoot** 对象后，**WindowManager** 再调用 **WMS** 提供的远程接口完成添加一个窗口并显示到屏幕上。
