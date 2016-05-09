@@ -32,6 +32,6 @@ Android APK 运行过程依赖于虚拟机（ **Dalvik or art** ）。将 **clas
 
 - **2.** 获得的 **绘制 UI 所需的 图形缓冲区** 之后，就可以绘制用户指定的 **UI** 了。在应用程序使用的是硬件绘制方式，则通过 **C/C++ Runtime Framework** 内的 **OpenGL** 进行绘制。此时，**SDK** 的 **UI** 类的绘制相关方法就通过 虚拟机（ **Dalvik or art** ）转换成了 **C/C++ Runtime Framework** 内的 **OpenGL** 操作。
 
-- **3.** 应用程序的 UI 绘制完成之后，绘制结果保存在图形缓冲区之中。此时，应该 **将该图形缓冲区渲染到手机屏幕上**，还需要 **Binder IPC** 将该图形缓冲区发送给 **C/C++ Runtime Framework** 内的 **SurfaceFlinger**。**SurfaceFlinger** 通过使用 **OpenGL** 或者 **HWComposer** 将需要渲染到屏幕上的图形缓冲区进行合成后，得到一个主图形缓冲区。最后这个主图形缓冲区又会被 **SurfaceFlinger** 提交给 **Kernel** 显卡驱动，并且在屏幕上进行显示。
+- **3.** 应用程序的 **UI** 绘制完成之后，绘制结果保存在图形缓冲区之中。此时，应该 **将该图形缓冲区渲染到手机屏幕上**，还需要 **Binder IPC** 将该图形缓冲区发送给 **C/C++ Runtime Framework** 内的 **SurfaceFlinger**。**SurfaceFlinger** 通过使用 **OpenGL** 或者 **HWComposer** 将需要渲染到屏幕上的图形缓冲区进行合成后，得到一个主图形缓冲区。最后这个主图形缓冲区又会被 **SurfaceFlinger** 提交给 **Kernel** 显卡驱动，并且在屏幕上进行显示。
 
 <img src="http://ww1.sinaimg.cn/large/006lPEc9gw1f3ozd3a5ggj31kw16on58.jpg" width="760x"/>  
