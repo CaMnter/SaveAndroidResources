@@ -13,6 +13,12 @@ EasyAndroidResources
 - [Binder](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/framework/Binder.md)
 - [Binder AIDL](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/framework/Binder%20AIDL.md)
 
+<br/>
+
+**Base:**
+
+<br/>
+
 **Other:**
 - [LruCache 源码解析](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/LruCache%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md)   
 
