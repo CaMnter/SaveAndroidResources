@@ -20,6 +20,7 @@ SaveAndroidResources
 
 **Base:**
 - [1. 生命周期](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/base/1.%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)   
+- [1. Activity 启动模式](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/2.%20Activity%20%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F.md)   
 
 <br/>
 
@@ -48,7 +49,7 @@ SaveAndroidResources
 
 
 <br/>
-   
+
 
 ## Annotated source code
 
