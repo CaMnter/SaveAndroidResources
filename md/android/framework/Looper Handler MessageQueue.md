@@ -1,6 +1,8 @@
 Looper Handler MessageQueue
 ==
 
+<br/>
+
 ## 1. 异步消息处理线程
 
 
@@ -32,6 +34,9 @@ Looper Handler MessageQueue
 - **3.** 其他外部线程可以向本线程的消息队列中发送消息，消息队列内部的读/写操作必须进行加锁
 即消息队列不能同时进行读/ 写操作。
 
+
+<br/>
+
 ## 2. Android 中的异步消息处理线程
 
 <img src="http://ww4.sinaimg.cn/large/006lPEc9jw1f3il7024jdj31kw16odm7.jpg" width="640x"/>   
@@ -39,6 +44,9 @@ Looper Handler MessageQueue
 在线程内部有一个或多个 Handler 对象，外部程序通过该 Handler 对象向线程发送异步消息，消
 息经由 Handler 传递到 MessageQueue 对象中。线程内部只能包含一个 MessageQueue 对象，线
 程主执行函数中从 MessageQueue 中读取消息，并回调 Handler 对象中的回调函数 handleMessage()。   
+
+
+<br/>
 
 ## 3. 线程局部存储
 
@@ -55,6 +63,7 @@ Looper Handler MessageQueue
 > 同一个线程引用变量值相同，不同线程引用则变量值不相同。
 
 
+<br/>
 
 ## 4. Looper
 
@@ -168,6 +177,9 @@ public static @Nullable Looper myLooper() {
 
 - **5.** 最后，`msg.recycleUnchecked();` 对消息的资源进行回收。对象占用的系统资源。因为 `Message` 类内部使用了一个数据池去保存 `Message` 对象，从而避免不停地创建和删除  `Message` 类对象。因此，每次处理完该消息后，需要将该 `Message` 对象表明为空闲，以便 `Message` 对象可以被重用。
 
+
+<br/>
+
 ## 5. MessageQueue
 
 > 消息队列采用排队方式对消息进行处理，就是先到的消息会先得到处理，但是如果消息本身指定
@@ -180,7 +192,6 @@ public static @Nullable Looper myLooper() {
 - **取出消息：** `next()` 。
 
 - **添加消息：** `enqueueMessage(Message msg, long when)` 。
-
 
 ### 5.1 next()
 ```java
@@ -362,14 +373,16 @@ boolean enqueueMessage(Message msg, long when) {
 的消息队列中，并且如果消息线程正处于挂起(wait)状态，则唤醒该线程。   
 
 
-## 5. Handler
+<br/>
 
-在 `Looper` 的 `loop()`` 的无限循环读取消息过程中，MessageQueue 虽然提供了读写消息的方法，但是却没有直接去调用，而是通过 msg.target（Hadnler）去处理消息。
+## 6. Handler
+
+在 `Looper` 的 `loop()` 的无限循环读取消息过程中，MessageQueue 虽然提供了读写消息的方法，但是却没有直接去调用，而是通过 msg.target（Hadnler）去处理消息。
 
 > 一般使用 Handler 类 MessageQueue 中发送消息，并重载 Handler 类的 handleMessage() 方法添加消息处理代码。
 
 
-### 5.1 Handler 构造方法
+### 6.1 Handler 构造方法
 
 **Handler 对象只能添加到有 MessageQueue 的线程中，否则会发生异常。**
 
@@ -414,7 +427,7 @@ public Handler(Looper looper, Callback callback, boolean async) {
 
 总结这里：**其实 Handler 强制性要拿一个 Looper，也只是为了一个 MessageQueue**。一个 Looper 的初始化，伴随着一个 MessageQueue 的诞生 ( Ps:见上述 Looper 源码分析 )。因为，`Handler` 的主要工作，还是操作 `MessageQueue` 。
 
-### 5.3 Handler 发消息
+### 6.3 Handler 发消息
 
 **虽然 Handler 的 发消息的方法很多，但是都是基于这两个 核心发消息方法 去实现的。**
 ```java
@@ -449,7 +462,7 @@ public final boolean sendMessageAtFrontOfQueue(Message msg) {
 可以看源码得知，所有的发消息方法都最终会调用这两个方法之一，这两个方法都会调用 `MessageQueue` 的方法去写一个消息进入消息队列内，最终的消息还是被添加到 C 环境中去。
 
 
-### 5.4 Handler 处理消息
+### 6.4 Handler 处理消息
 
 ```java
 
