@@ -1,27 +1,37 @@
 Binder AIDL
 ==
 
+<br/>
+
 ## 1. 简介
 
-> AIDL:Android Interface Definition Language,即 Android 接口定义语言。
+> AIDL: Android Interface Definition Language, 即 Android 接口定义语言。
 
->什么是AIDL?
->为了使其他的应用程序也可以访问本应用程序提供的服务，Android 系统采用了远程过程调用（Remote Procedure Call，RPC）方式来实现。与很多其他的基于RPC的解决方案一样，Android使用一种接口定义语言（Interface Definition Language，IDL）来公开服务的接口。我们知道4个 Android 应用程序组件中的3个（Activity、BroadcastReceiver 和 ContentProvider）都可以进行跨进程访问，另外一个 Android 应用程序组件 Service 同样可以。因此，可以将这种可以跨进程访问的服务称为AIDL（Android Interface Definition Language）服务。
+>什么是 AIDL?   
+>为了使其他的应用程序也可以访问本应用程序提供的服务，Android 系统采用了远程过程调用（ Remote Procedure Call, RPC ）方式来实现。与很多其他的基于 RPC 的解决方案一样，Android 使用一种接口定义语言（ Interface Definition Language, IDL ）来公开服务的接口。我们知道 4个 Android 应用程序组件中的3个（Activity、BroadcastReceiver 和 ContentProvider）都可以进行跨进程访问，另外一个 Android 应用程序组件 Service 同样可以。因此，可以将这种可以跨进程访问的服务称为 AIDL（ Android Interface Definition Language ）服务。
+
+<br/>
 
 ## 2. 建立 AIDL 服务的步骤
 
-- **1.** Java包目录中建立一个扩展名为 .aidl 的文件。该文件的语法类似于 Java 代码，但会稍有不同。  
-- **2.** 如果 aidl 文件的内容是正确的，ADT 会自动生成一个Java接口文件（*.java）。
-- **3.** 建立一个服务类（Service的子类）。  
-- **4.** 实现由 aidl 文件生成的 Java 接口。
-- **5.** 在 AndroidManifest.xml 文件中配置 AIDL 服务，尤其要注意的是，`<action>` 标签中android:name的属性值就是客户端要引用该服务的ID，也就是Intent类的参数值。
+- **1.** Java包目录中建立一个扩展名为 .aidl 的文件。该文件的语法类似于 Java 代码，但会稍有不同。    
+
+- **2.** 如果 aidl 文件的内容是正确的，ADT 会自动生成一个 Java 接口文件（ .java ）。   
+
+- **3.** 建立一个服务类（ Service 的子类 ）。     
+
+- **4.** 实现由 aidl 文件生成的 Java 接口。   
+
+- **5.** 在 AndroidManifest.xml 文件中配置 AIDL 服务，尤其要注意的是，`<action>` 标签中 `android:name` 的属性值就是客户端要引用该服务的 ID，也就是 Intent 类的参数值。   
 
 
-## AIDL 原理
+## 2.1 AIDL 原理
 
 **为什么 .aidl 文件生成的 java 代码能够进行 IPC （跨进程通信） 呢？**   
-**答：**因为 生成的 java 代码**定义了 Binder 机制中 作为 Server 的 Binder 对象和 Client 中要使用的 Proxy 对象**。 Binder Server 创建后会启动一个隐藏线程，同时会创建 Binder 驱动中的 Binder Server的 远程 mRemote 对象。**mRemote 其实就是一个Proxy 对象** 。Client 通过 这个 Proxy 对象去和 Server 通信。
+          
+**答：**因为 生成的 java 代码**定义了 Binder 机制中 作为 Server 的 Binder 对象和 Client 中要使用的 Proxy 对象**。 Binder Server 创建后会启动一个隐藏线程，同时会创建 Binder 驱动中的 Binder Server 的 远程 mRemote 对象。**mRemote 其实就是一个 Proxy 对象** 。Client 通过 这个 Proxy 对象去和 Server 通信。
 
+<br/>
 
 ## 3. AIDL 实例
 
@@ -213,18 +223,18 @@ public interface IPushMessage extends android.os.IInterface {
 - **1.** 本 `Ixx` 接口，并且定义了 aidl 文件里描述的方法。
 - **2.** 静态抽象类 Stub，继承了 `android.os.Binder` ，并且实现了 aidl 生成的 `Ixx` 接口。
 - **3.** 静态内部类 Stub.Proxy，也实现了 aidl 生成的 `Ixx` 接口。  
-     
+
 ### 4.2 Stub
 继承了 Binder，实现了我们在 aidl 生成的接口，定义了需要跨进程通信的方法。作为 Server 存在着。   
-                 
+
 ### 4.3 Stub.Proxy
 也实现了 aidl 生成的接口，Cilent 可以与 Proxy 通信，间接地和 Server 端进行了通信。 `private android.os.IBinder mRemote;`  是 Proxy 类 里的唯一属性。Proxy 实现的 aidl 接口方法中，都调用了 `mRemote.transact` 去与 Server 进行通信。
-       
+
 ### 4.3 Proxy 与 Stub 的 Code 对应
 **以上面实例中生成的接口为例：**
 Proxy 类定义了 两个 code 去区分接口方法：`TRANSACTION_basicTypes` 和 `TRANSACTION_onMessage`。
 同时，Stub 类的 `onTransact` 方法里也有对应 `TRANSACTION_basicTypes` 和 `TRANSACTION_onMessage` code的分发处理。  
-          
+
 ### 4.4 Stub.onTransact 的作用？
 > onTransact 方法主要是在 用户空间 和 内核空间 中进行数据的交换，实现进程间数据的交互。
 
@@ -244,16 +254,8 @@ public static com.camnter.newlife.aidl.IPushMessage asInterface(android.os.IBind
     }
     return new Stub.Proxy(obj);
 }
-``` 
-    
-    
+```
+
+
 ### 4.6 为什么要用 asInterface 方法将 IBinder 对象进行转换？
 **答：** 因为通信的话，**假如当前进程处在 Server 的进程，那么就不需要 Proxy 对象进行通信；假如你当前进程不在 Server 进程，就需要 Proxy 对象进行 IPC 通信**，证明这句话的代码就是上述的，如果 `queryLocalInterface` 查询本地接口，存在的话，就返回该接口（此时就是处在 Server 进程的情况）；没找到，直接 `new` 一个 Proxy 提供 IPC 通信功能。
-
-
-
-
-
-
-
-
