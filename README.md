@@ -21,6 +21,10 @@ SaveAndroidResources
 **Base:**
 - [1. 生命周期](https://github.com/CaMnter/EasyAndroidResources/blob/master/md/android/base/1.%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)   
 - [2. Activity 启动模式](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/2.%20Activity%20%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F.md)   
+- [3. 跨进程通信 方式 及 问题](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/3.%20%E8%B7%A8%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1%20%E6%96%B9%E5%BC%8F%20%E5%8F%8A%20%E9%97%AE%E9%A2%98.md)  
+- [4. Socket](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/4.%20Socket.md)   
+- [5. View 滑动相关](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/5.%20View%20%E6%BB%91%E5%8A%A8%E7%9B%B8%E5%85%B3.md)   
+ 
 
 <br/>
 
