@@ -50,8 +50,17 @@ SaveAndroidResources
 
 <br/>
 
+**Network:**
+- [TCP/IP 协议三次握手与四次握手流程解析](http://www.2cto.com/net/201310/251896.html)
+- [详解 Https 是如何确保安全的？](http://www.wxtlife.com/2016/03/27/%E8%AF%A6%E8%A7%A3https%E6%98%AF%E5%A6%82%E4%BD%95%E7%A1%AE%E4%BF%9D%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9F/)   - [SSL/TLS 协议运行机制的概述](http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html)
+
+
+<br/>
+
 **Other:**
-- [java中volatile关键字的含义](http://www.cnblogs.com/aigongsi/archive/2012/04/01/2429166.html)
+- [ArrayList 的实现原理](http://zhangshixi.iteye.com/blog/674856)   
+- [HashMap 的实现原理](http://zhangshixi.iteye.com/blog/672697)   
+- [Java 中 volatile 关键字的含义](http://www.cnblogs.com/aigongsi/archive/2012/04/01/2429166.html)
 
 
 <br/>
