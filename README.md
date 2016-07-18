@@ -49,6 +49,7 @@ SaveAndroidResources
 <br/>
 
 **Extensions**   
+
 - [AndFix](https://github.com/alibaba/AndFix)   
 
 - [HotFix](https://github.com/dodola/HotFix)   
@@ -57,6 +58,15 @@ SaveAndroidResources
 
 - [Android 热补丁动态修复框架小结](http://blog.csdn.net/lmj623565791/article/details/49883661)      
 
+<br/>
+
+- [为什么 Android 开发者应该使用 FlatBuffers 替代 JSON ?](http://blog.chengdazhi.com/index.php/201#rd?sukey=3997c0719f1515200399a26940a285f0580d23b92efa03e8d623f14c1ef31d7f793b0db2bae819daa39ff5c52ccfcb14)   
+
+- [google/flatbuffers](https://github.com/google/flatbuffers)   
+
+- [FlatBuffer](https://github.com/amitshekhariitbhu/FlatBuffer)   
+
+- [Google FlatBuffers 使用教程](http://www.tuicool.com/articles/meyaiu3)               
 
 <br/>   
 
