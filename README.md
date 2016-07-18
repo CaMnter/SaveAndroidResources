@@ -48,6 +48,18 @@ SaveAndroidResources
 
 <br/>
 
+**Extensions**   
+- [AndFix](https://github.com/alibaba/AndFix)   
+
+- [HotFix](https://github.com/dodola/HotFix)   
+
+- [RocooFix](https://github.com/dodola/RocooFix)      
+
+- [Android 热补丁动态修复框架小结](http://blog.csdn.net/lmj623565791/article/details/49883661)      
+
+
+<br/>   
+
 
 ## Java resources
 
