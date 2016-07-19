@@ -68,6 +68,12 @@ SaveAndroidResources
 
 - [Google FlatBuffers 使用教程](http://www.tuicool.com/articles/meyaiu3)               
 
+
+<br/>
+
+**Other:**
+- [AndroidInterview-Q-A](https://github.com/JackyAndroid/AndroidInterview-Q-A/blob/master/README-CN.md)   
+
 <br/>   
 
 
