@@ -58,6 +58,10 @@ SaveAndroidResources
 
 - [Android 热补丁动态修复框架小结](http://blog.csdn.net/lmj623565791/article/details/49883661)      
 
+- [Tinker_imitator](https://github.com/zzz40500/Tinker_imitator)   
+
+- [Tinker_imitator 原理篇](http://www.jianshu.com/p/620c2b0490ec#rd)   
+
 <br/>
 
 - [为什么 Android 开发者应该使用 FlatBuffers 替代 JSON ?](http://blog.chengdazhi.com/index.php/201#rd?sukey=3997c0719f1515200399a26940a285f0580d23b92efa03e8d623f14c1ef31d7f793b0db2bae819daa39ff5c52ccfcb14)   
