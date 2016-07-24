@@ -70,10 +70,20 @@ SaveAndroidResources
 
 - [FlatBuffer](https://github.com/amitshekhariitbhu/FlatBuffer)   
 
-- [Google FlatBuffers 使用教程](http://www.tuicool.com/articles/meyaiu3)               
+- [Google FlatBuffers 使用教程](http://www.tuicool.com/articles/meyaiu3)  
 
+- [FlatBuffers 体验](http://www.race604.com/flatbuffers-intro/)   
+
+- [FlatBuffs](https://github.com/frogermcs/FlatBuffs)  
 
 <br/>
+
+- [DynamicAPK](https://github.com/CtripMobile/DynamicAPK)   
+
+- [携程 Android App 插件化和动态加载实践](http://www.infoq.com/cn/articles/ctrip-android-dynamic-loading)   
+
+- [Android 插件化：从入门到放弃](http://www.infoq.com/cn/articles/android-plug-ins-from-entry-to-give-up?utm_campaign=rightbar_v2&utm_source=infoq&utm_medium=articles_link&utm_content=link_text)   
+
 
 **Other:**
 - [AndroidInterview-Q-A](https://github.com/JackyAndroid/AndroidInterview-Q-A/blob/master/README-CN.md)   
@@ -112,8 +122,9 @@ SaveAndroidResources
 
 - [HashMap 的实现原理](http://zhangshixi.iteye.com/blog/672697)   
 
-- [Java 中 volatile 关键字的含义](http://www.cnblogs.com/aigongsi/archive/2012/04/01/2429166.html)
+- [Java 中 volatile 关键字的含义](http://www.cnblogs.com/aigongsi/archive/2012/04/01/2429166.html)   
 
+- [Effective-JAVA-Summary](https://github.com/HugoMatilla/Effective-JAVA-Summary)   
 
 <br/>
 
