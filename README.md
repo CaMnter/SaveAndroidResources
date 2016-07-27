@@ -84,6 +84,8 @@ SaveAndroidResources
 
 - [Android 插件化：从入门到放弃](http://www.infoq.com/cn/articles/android-plug-ins-from-entry-to-give-up?utm_campaign=rightbar_v2&utm_source=infoq&utm_medium=articles_link&utm_content=link_text)   
 
+- [Android 动态加载基础 ClassLoader 工作机制](https://segmentfault.com/a/1190000004062880)  
+
 
 **Other:**
 - [AndroidInterview-Q-A](https://github.com/JackyAndroid/AndroidInterview-Q-A/blob/master/README-CN.md)   
