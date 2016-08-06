@@ -35,7 +35,9 @@ SaveAndroidResources
 
 - [5. View 滑动相关](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/5.%20View%20%E6%BB%91%E5%8A%A8%E7%9B%B8%E5%85%B3.md)   
 
-- [6. View 的事件分发机制](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/6.%20View%20%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6.md)      
+- [6. View 的事件分发机制](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/6.%20View%20%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6.md)     
+  
+- [7. View 的工作原理](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/7.%20View%20%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.md)  
 
 <br/>
 
