@@ -36,9 +36,9 @@ SaveAndroidResources
 - [5. View 滑动相关](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/5.%20View%20%E6%BB%91%E5%8A%A8%E7%9B%B8%E5%85%B3.md)   
 
 - [6. View 的事件分发机制](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/6.%20View%20%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6.md)     
-  
+
 - [7. View 的滑动冲突](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/7.%20View%20%E7%9A%84%E6%BB%91%E5%8A%A8%E5%86%B2%E7%AA%81.md)  
-   
+
 - [8. View 的工作原理](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/8.%20View%20%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.md)   
 
 
@@ -68,6 +68,8 @@ SaveAndroidResources
 
 - [Tinker_imitator 原理篇](http://www.jianshu.com/p/620c2b0490ec#rd)   
 
+- [Android N 混合编译与对热补丁影响深度解析](https://github.com/WeMobileDev/article/blob/master/Android_N%E6%B7%B7%E5%90%88%E7%BC%96%E8%AF%91%E4%B8%8E%E5%AF%B9%E7%83%AD%E8%A1%A5%E4%B8%81%E5%BD%B1%E5%93%8D%E8%A7%A3%E6%9E%90.md)   
+
 <br/>
 
 - [为什么 Android 开发者应该使用 FlatBuffers 替代 JSON ?](http://blog.chengdazhi.com/index.php/201#rd?sukey=3997c0719f1515200399a26940a285f0580d23b92efa03e8d623f14c1ef31d7f793b0db2bae819daa39ff5c52ccfcb14)   
@@ -90,8 +92,25 @@ SaveAndroidResources
 
 - [Android 插件化：从入门到放弃](http://www.infoq.com/cn/articles/android-plug-ins-from-entry-to-give-up?utm_campaign=rightbar_v2&utm_source=infoq&utm_medium=articles_link&utm_content=link_text)   
 
-- [Android 动态加载基础 ClassLoader 工作机制](https://segmentfault.com/a/1190000004062880)  
+<br/>
 
+- [Android 动态加载系列索引](http://kaedea.com/2016/02/05/android-dynamical-loading-00-index/)   
+
+- [Android 动态加载简单易懂的介绍方式](http://kaedea.com/2016/02/06/android-dynamical-loading-01-introduction/)   
+
+- [ClassLoader 工作机制](http://kaedea.com/2016/02/07/android-dynamical-loading-02-classloader/)   
+
+- [加载 SD 卡中的 SO 库](http://kaedea.com/2016/06/01/android-dynamical-loading-03-so-in-sdcard/)   
+
+- [使用 SO 库时要注意的一些问题](http://kaedea.com/2016/06/04/android-dynamical-loading-04-so-problems/)   
+
+- [简单的动态加载模式](http://kaedea.com/2016/06/05/android-dynamical-loading-05-simple-mode/)  
+
+- [代理 Activity 模式](http://kaedea.com/2016/06/10/android-dynamical-loading-06-proxy-activity/)   
+
+- [动态创建 Activity 模式](http://kaedea.com/2016/06/14/android-dynamical-loading-07-dynamic-activity/)   
+
+<br/>
 
 **Other:**
 - [AndroidInterview-Q-A](https://github.com/JackyAndroid/AndroidInterview-Q-A/blob/master/README-CN.md)   
