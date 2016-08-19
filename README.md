@@ -68,7 +68,6 @@ SaveAndroidResources
 
 - [Tinker_imitator 原理篇](http://www.jianshu.com/p/620c2b0490ec#rd)   
 
-- [Android N 混合编译与对热补丁影响深度解析](https://github.com/WeMobileDev/article/blob/master/Android_N%E6%B7%B7%E5%90%88%E7%BC%96%E8%AF%91%E4%B8%8E%E5%AF%B9%E7%83%AD%E8%A1%A5%E4%B8%81%E5%BD%B1%E5%93%8D%E8%A7%A3%E6%9E%90.md)   
 
 <br/>
 
@@ -109,6 +108,18 @@ SaveAndroidResources
 - [代理 Activity 模式](http://kaedea.com/2016/06/10/android-dynamical-loading-06-proxy-activity/)   
 
 - [动态创建 Activity 模式](http://kaedea.com/2016/06/14/android-dynamical-loading-07-dynamic-activity/)   
+
+<br/>
+
+**WeMobileDev:**
+- [Android N 混合编译与对热补丁影响深度解析](https://github.com/WeMobileDev/article/blob/master/Android_N%E6%B7%B7%E5%90%88%E7%BC%96%E8%AF%91%E4%B8%8E%E5%AF%B9%E7%83%AD%E8%A1%A5%E4%B8%81%E5%BD%B1%E5%93%8D%E8%A7%A3%E6%9E%90.md)    
+
+- [IPv6 socket 编程](https://github.com/WeMobileDev/article/blob/master/IPv6%20socket%E7%BC%96%E7%A8%8B.md)   
+
+- [基于 TLS1.3 的微信安全通信协议 mmtls 介绍](https://github.com/WeMobileDev/article/blob/master/%E5%9F%BA%E4%BA%8ETLS1.3%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%AE%89%E5%85%A8%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEmmtls%E4%BB%8B%E7%BB%8D.md)   
+
+- [微信 Android 热补丁实践演进之路](https://github.com/WeMobileDev/article/blob/master/%E5%BE%AE%E4%BF%A1Android%E7%83%AD%E8%A1%A5%E4%B8%81%E5%AE%9E%E8%B7%B5%E6%BC%94%E8%BF%9B%E4%B9%8B%E8%B7%AF.md)      
+
 
 <br/>
 
