@@ -118,8 +118,20 @@ SaveAndroidResources
 
 - [基于 TLS1.3 的微信安全通信协议 mmtls 介绍](https://github.com/WeMobileDev/article/blob/master/%E5%9F%BA%E4%BA%8ETLS1.3%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%AE%89%E5%85%A8%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEmmtls%E4%BB%8B%E7%BB%8D.md)   
 
-- [微信 Android 热补丁实践演进之路](https://github.com/WeMobileDev/article/blob/master/%E5%BE%AE%E4%BF%A1Android%E7%83%AD%E8%A1%A5%E4%B8%81%E5%AE%9E%E8%B7%B5%E6%BC%94%E8%BF%9B%E4%B9%8B%E8%B7%AF.md)      
+- [微信 Android 热补丁实践演进之路 一  ](https://github.com/WeMobileDev/article/blob/master/%E5%BE%AE%E4%BF%A1Android%E7%83%AD%E8%A1%A5%E4%B8%81%E5%AE%9E%E8%B7%B5%E6%BC%94%E8%BF%9B%E4%B9%8B%E8%B7%AF.md)   
 
+- [微信 Android 热补丁实践演进之路 二 ](http://dev.qq.com/topic/57ad7a70eaed47bb2699e68e)       
+
+<br/>
+
+**Bugly:**
+- []()
+
+- []()
+
+- []()
+
+- []()   
 
 <br/>
 
