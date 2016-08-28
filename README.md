@@ -190,3 +190,5 @@ SaveAndroidResources
 - [LruCache](https://github.com/CaMnter/EasyAndroidResources/blob/master/code/android/classes/LruCache.java)
 
 - [Otto](https://github.com/CaMnter/EasyAndroidResources/tree/master/code/android/framework/otto)
+
+- [agera](https://github.com/CaMnter/AndroidLife/tree/master/agera-1.0.0/src/main/java/com/google/android/agera)
