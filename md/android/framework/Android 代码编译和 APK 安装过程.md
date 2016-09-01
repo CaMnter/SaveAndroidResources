@@ -1,5 +1,7 @@
-Android 代码编译和APK安装过程
+Android 代码编译和 APK 安装过程
 ==
+
+<br/>
 
 ## 1. Android 代码编译
 
@@ -8,6 +10,8 @@ Android 代码编译和APK安装过程
 ### 1.1 Jack ( Java Android Compiler Kit ) 编译
 
 如果用 Jack 编译的话，上面的 ` .java + 资源 -> 资源 + .class -> .dex` 流程会变为 ` .java + 资源 -> .jack -> .dex ` 流程。
+
+<br/>
 
 ## 2. Android APK 安装过程
 
