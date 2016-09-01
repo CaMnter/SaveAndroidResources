@@ -1,4 +1,4 @@
-Android APK的运行过程
+Android APK 的运行过程
 ==
 
 **1.** 首先，**ActivityThread** 从 `main()` 函数中开始进行，调用 `prepareMainLooper()` 为 **UI** 线程创建 **Looper** 的同时，也创建一个消息队列（ **MessageQueue** ）。
