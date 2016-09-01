@@ -1,6 +1,8 @@
 Android Framework 概述
 ==
 
+<br/>
+
 ## 1. Framework 框架
 
 > Framework 定义了 客户端组件 和 服务端组件 功能及接口。在 Android 中， "应用程序" 一般是指 ".apk" 程序。
@@ -10,6 +12,8 @@ Android Framework 概述
 - **服务端**
 - **客户端**
 - **Linux 驱动**
+
+<br/>
 
 ## 2. 服务端
 
@@ -33,6 +37,7 @@ Android Framework 概述
 - **InputDispatcherThread 类：** InputDispatcherThread 类的对象一旦创建，也会立即启动一个线程，该线程会不断地从 QueueEvent
 中取出用户的消息，并进行一定的过滤，过滤后，再将这些消息发送给当前活动的客户端程序中。
 
+<br/>
 
 ## 3. 客户端
 
@@ -57,6 +62,7 @@ Android Framework 概述
 
 <img src="http://ww1.sinaimg.cn/large/006lPEc9jw1f3o3ce05t9j312g18vdil.jpg" width="660x"/>
 
+<br/>
 
 ## 4. Linux 驱动
 
