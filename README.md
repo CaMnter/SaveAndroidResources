@@ -69,6 +69,7 @@ SaveAndroidResources
 
 - [Tinker_imitator 原理篇](http://www.jianshu.com/p/620c2b0490ec#rd)   
 
+- [Android 热更新方案 Robust](http://tech.meituan.com/android_robust.html)
 
 <br/>
 
@@ -91,6 +92,8 @@ SaveAndroidResources
 - [携程 Android App 插件化和动态加载实践](http://www.infoq.com/cn/articles/ctrip-android-dynamic-loading)   
 
 - [Android 插件化：从入门到放弃](http://www.infoq.com/cn/articles/android-plug-ins-from-entry-to-give-up?utm_campaign=rightbar_v2&utm_source=infoq&utm_medium=articles_link&utm_content=link_text)   
+
+- [ZeusPlugin](https://github.com/iReaderAndroid/ZeusPlugin)
 
 <br/>
 
