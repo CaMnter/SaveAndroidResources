@@ -42,6 +42,8 @@ SaveAndroidResources
 
 - [9. 自定义 View 分类 和 须知](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/9.%20%E8%87%AA%E5%AE%9A%E4%B9%89%20View%20%E5%88%86%E7%B1%BB%20%E5%92%8C%20%E9%A1%BB%E7%9F%A5.md)      
 
+- [10. RemoteViews.md](https://github.com/CaMnter/SaveAndroidResources/blob/master/md/android/base/10.%20RemoteViews.md)
+
 
 <br/>
 
